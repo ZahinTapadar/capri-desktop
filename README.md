@@ -134,6 +134,20 @@ app's name. Nothing happens until you click it. She closes it the way its own cl
 you to save. If it only hid in the tray, she offers **Force quit**, again only on your click (unsaved work is lost
 then). She never closes Windows' own pieces, Claude, Ollama or herself, and she can't do anything else on your PC.
 
+### Focus mode
+
+A pomodoro she counts down for you. In her menu, **Focus mode**: 25 min / 5 min, 50 min / 10 min, or your own times
+(**Set my own times…**: focus, break, long break and how many rounds before it; she keeps them for next time).
+
+- **During a round**: the countdown sits over her head (`FOCUS 23:41 1/4`, red, with a bar filling up; `BREAK` in
+  green). She stays put and stays awake: no wandering, no possessing your windows, no gazing at the satellite. Claude
+  still gets through.
+- **The last ten seconds**: each second, huge, slams into the middle of the screen on an impact frame.
+- **When a round ends**: her finale all over the screen (impact flash, speed lines, shockwaves, light columns and
+  shards across the whole width, red lightning between them, a banner `ROUND 1/4 DONE`), her victory pose, and your break.
+- **When the break is over**: `BACK TO WORK`, and she comes to get you.
+- Pause, skip to the break, end the break or stop, from the same menu. Click her for the time left.
+
 She only catches the mouse on her actual body (pixel-precise): the rest of the screen works as usual.
 
 - **Click** her: she tells you where Claude is at (nothing going on: a **Talk to me** button, to chat with her).
@@ -142,7 +156,7 @@ She only catches the mouse on her actual body (pixel-precise): the rest of the s
 - **Ctrl+Alt+C**: she puts herself away (into her biochip, like in the show) and all that's left of her is her mask,
   eyes shut, in the bottom-left corner. Her eyes only open when Claude needs you. Click the mask (or Ctrl+Alt+C again)
   to bring her back.
-- **Her menu**: right-click her (it's also on her tray icon, next to the clock): teleport, look at the satellite, demo,
+- **Her menu**: right-click her (it's also on her tray icon, next to the clock): focus mode, teleport, look at the satellite, demo,
   how it works, mission report, talk to her, size, sound, screen, AI model, wander, possess your windows,
   language, start with Windows, hooks.
 
@@ -333,14 +347,16 @@ tools/build-cutins.py    cuts the cut-ins and her faces out of frames of the sho
 tools/build-intro.py     cuts her intro's close-ups out of their background, all the same way
 src/main/                Electron: full-screen transparent click-through window, tray, local HTTP bridge
   windows.js / .ps1      where the other windows are (Windows only), so she can sit on them
+  focus.js               focus mode's clock: rounds, breaks, your own times
   ollama.js              her chat: the local model, through Ollama
   apps.js                closing an app you asked her to close (after your click)
 src/renderer/js/
   sprite.js              WebGL shader: head tilt, mane flare, sitting, smears, afterimages, colors, glitch
   acting.js              the exposure sheets: every move, drawing by drawing
   capri.js               the character: stances, teleport, sitting, peeking, falling, drag, sleep
-  fx.js                  shards, light columns, bolts, glyphs, speed lines, shockwaves, the satellite and the red light, possessed windows, the cut-ins, her intro
-  panel.js               the "transmission" panel, her faces, and the ticker
+  fx.js                  shards, light columns, bolts, glyphs, speed lines, shockwaves, the satellite and the red light, possessed windows, the cut-ins, her intro, focus mode's countdown and banner
+  panel.js               the "transmission" panel, her faces, the ticker and the focus countdown
+  focus-times.js         the "Set my own times" window (focus-times.html)
   guide.js               her guide: the tutorials, going to things and pointing at them
   brain.js               turns Claude events into lines and actions
   mission.js             today's mission log, for her report card

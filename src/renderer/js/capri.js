@@ -46,6 +46,7 @@ export class Capri {
     this.dormant = false; // asleep, down to her mask
     this.wander = true;
     this.possessWindows = true; // tray: "Possess my windows"
+    this.focus = false;   // a focus round is on (her pomodoro): she stays put, awake, and doesn't gaze off
     this.dragging = false;
 
     this.p = {
@@ -375,10 +376,10 @@ export class Capri {
 
     if (this.mode === 'idle' && this.stance !== 'peek' && now > this.nextGaze) {
       this.nextGaze = now + rand(90000, 180000);
-      this.gaze();
+      if (!this.focus) this.gaze();
     }
 
-    if (this.mode === 'idle' && now - this.lastActivity > SLEEP_AFTER) this.setMode('sleep');
+    if (this.mode === 'idle' && !this.focus && now - this.lastActivity > SLEEP_AFTER) this.setMode('sleep');
     if (this.mode === 'sleep' && now - this.sleptAt > DOZE_AFTER) {
       this.doze();
       return;
@@ -403,7 +404,7 @@ export class Capri {
 
   // What she does with herself when nobody needs her.
   wanderStep() {
-    if (!this.wander || this.stance === 'peek') {
+    if (!this.wander || this.focus || this.stance === 'peek') {
       if (this.stance !== 'peek') this.flourish();
       return;
     }
@@ -1150,7 +1151,7 @@ export class Capri {
   }
 
   canPossess() {
-    return this.possessWindows && !this.busy && !this.hidden && this.stance === 'sit' && !reducedMotion.matches
+    return this.possessWindows && !this.focus && !this.busy && !this.hidden && this.stance === 'sit' && !reducedMotion.matches
       && this.windows.wins.some((w) => w.id === this.perch?.id);
   }
 

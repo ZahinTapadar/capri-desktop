@@ -814,6 +814,76 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+/* ---------- focus: her pomodoro countdown ---------- */
+
+.focus {
+  --focus-accent: var(--red);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 3;
+  filter: drop-shadow(3px 3px 0 var(--violet));
+  will-change: transform;
+}
+
+.focus[data-phase='rest'],
+.focus[data-phase='long'] {
+  --focus-accent: var(--green);
+}
+
+.focus__plate {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 6px 14px 5px 11px;
+  background: var(--ink);
+  white-space: nowrap;
+  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+}
+
+.focus__label {
+  color: var(--focus-accent);
+  font-family: var(--font-mono);
+  font-size: var(--text-data);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+.focus__time {
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: 20px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.focus__round {
+  color: var(--paper-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-data);
+}
+
+.focus__bar {
+  height: 3px;
+  margin-top: 2px;
+  background: var(--ink);
+}
+
+.focus__bar span {
+  display: block;
+  height: 100%;
+  width: calc(var(--done, 0) * 100%);
+  background: var(--focus-accent);
+}
+
+.focus.is-paused .focus__time {
+  animation: blink 900ms steps(2, jump-none) infinite;
+}
+
+.focus.is-flash .focus__plate {
+  animation: ticker-flash 160ms steps(2, jump-end) 1;
+}
+
 /* ---------- reduced motion ---------- */
 
 @media (prefers-reduced-motion: reduce) {
@@ -823,6 +893,8 @@ body {
   .ticker.is-flash .ticker__plate,
   .ticker__dot,
   .panel__line.is-streaming::after,
+  .focus.is-paused .focus__time,
+  .focus.is-flash .focus__plate,
   .panel[data-kind='alert'] .panel__state {
     animation: none !important;
   }

@@ -19,6 +19,7 @@ const DEFAULTS = {
   cloudModel: 'gpt-oss:20b', // the cloud Ollama model (cheapest free model)
   ollamaApiKey: '',  // Ollama cloud API key (never printed, stored here so the settings menu can set it)
   notifications: true, // system notifications for Claude updates
+  focusCustom: { work: 30, rest: 5, long: 15, rounds: 4 }, // focus mode, your own times (minutes)
 };
 
 let cache = null;

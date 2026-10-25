@@ -148,6 +148,8 @@ A pomodoro she counts down for you. In her menu, **Focus mode**: 25 min / 5 min,
 - **When the break is over**: `BACK TO WORK`, and she comes to get you.
 - Pause, skip to the break, end the break or stop, from the same menu. Click her for the time left.
 
+![Focus mode: the countdown over her head, the last seconds, and her finale when a round ends](docs/focus.png)
+
 She only catches the mouse on her actual body (pixel-precise): the rest of the screen works as usual.
 
 - **Click** her: she tells you where Claude is at (nothing going on: a **Talk to me** button, to chat with her).

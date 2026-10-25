@@ -160,6 +160,8 @@ temps (**Choisir mes temps…** : focus, pause, grande pause et combien de tours
 - **Quand la pause est finie** : `RETOUR AU BOULOT`, et elle vient te chercher.
 - Pause, passer à la pause, finir la pause ou arrêter, depuis le même menu. Clique sur elle pour le temps restant.
 
+![Le mode focus : le compte à rebours au-dessus de sa tête, les dernières secondes, et son final quand un tour se termine](docs/focus.png)
+
 Elle n'attrape la souris que sur son corps (au pixel près) : tout le reste de l'écran reste utilisable normalement.
 
 - **Clic** sur elle : elle te dit où en est Claude (s'il ne se passe rien : un bouton **Parle-moi**, pour discuter
